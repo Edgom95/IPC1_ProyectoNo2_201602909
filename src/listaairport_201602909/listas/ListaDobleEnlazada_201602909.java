@@ -5,6 +5,12 @@
  */
 package listaairport_201602909.listas;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+
 /**
  *
  * @author edgom
@@ -15,6 +21,7 @@ public Avion_201602909 Avion;
 public String Nombre;
 public NodoAvion_201602909 inicio;
 public NodoAvion_201602909 fin;
+public int tamaño=0;
 
     public ListaDobleEnlazada_201602909(String nombre) {
         this.Nombre=nombre;
@@ -29,11 +36,16 @@ public NodoAvion_201602909 fin;
             return false;
         }
     }
+    
+    public int tamañoLista(){
+    return tamaño;
+    }
 
     public void insertarAlFin(Avion_201602909 avion) {
         NodoAvion_201602909 nuevo = new NodoAvion_201602909(avion);
         if (estaVacia()) {
             inicio = nuevo;
+            tamaño++;
         } else {
             NodoAvion_201602909 aux = inicio;
             
@@ -42,24 +54,9 @@ public NodoAvion_201602909 fin;
             }
             aux.setSiguiente(nuevo);
             nuevo.setAnterior(aux);
+            tamaño++;
         }
     }
-    
-//    public NodoAvion_201602909 buscar(Avion_201602909 avion) {
-//        NodoAvion_201602909 aux = inicio;
-//        int contador = 0;
-//        if (!estaVacia()) {
-//
-//            while (aux != null) {
-//
-//                if (aux.getAvion().equals(avion)) {
-//                    aux = aux.getSiguiente();
-//                    contador++;
-//                }
-//            }
-//        }
-//        return aux;
-//    }
     
     public void ImprimirLista(){
      NodoAvion_201602909 aux= inicio;
@@ -69,7 +66,7 @@ public NodoAvion_201602909 fin;
       }
     }
     
-    public void eliminarAvion(Avion_201602909 avion) {
+    public void eliminarAvion() {
 
         if (!estaVacia()) {
             NodoAvion_201602909 aux = inicio;
@@ -77,21 +74,52 @@ public NodoAvion_201602909 fin;
 
             while (aux != null) {
 
-                if (aux.getAvion().equals(avion)) {
+                if (aux.getAvion().getNoTurnos()==0) {
                     if (ant == null) {
                         inicio = inicio.getSiguiente();
                         aux.setSiguiente(null);
                         aux = inicio;
+                        tamaño--;
                     } else {
                         ant.setSiguiente(aux.getSiguiente());
                         aux.setSiguiente(null);
                         aux = ant.getSiguiente();
+                        tamaño--;
                     }
                 } else {
                     ant = aux;
                     aux = aux.getSiguiente();
                 }
             }
+        }
+    }
+    
+    public void descontarTurnoAvion() {
+        NodoAvion_201602909 aux = inicio;
+        while (aux != null) {
+            aux.getAvion().setNoTurnos(aux.getAvion().getNoTurnos() - 1);
+            aux = aux.getSiguiente();
+        }
+    }
+    
+   public void crearDot() {
+        File archivo = new File("ListaAviones.dot");
+        try {
+            FileWriter fw = new FileWriter(archivo);
+            BufferedWriter bw = new BufferedWriter(fw);
+            PrintWriter pw = new PrintWriter(bw);
+
+            pw.write("digraph G {"+"\n");
+            NodoAvion_201602909 aux = inicio;
+            while (aux != null) {
+            pw.write("Avion: "+aux.getAvion().getNombre()+" No Pasajeros: "+aux.getAvion().getNoPasajeros()+" No Turnos: "+aux.getAvion().getNoTurnos()+" No Turnos Mantenimiento: "+aux.getAvion().getNoTurnosMantenimiento()+" -> "+"\n");
+            aux = aux.getSiguiente();
+            }
+            pw.write("}"+"\n");
+            pw.close();
+            bw.close();
+
+        } catch (IOException e) {
         }
     }
 }

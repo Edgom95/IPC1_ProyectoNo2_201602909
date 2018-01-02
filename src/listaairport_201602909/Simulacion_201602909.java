@@ -5,20 +5,49 @@
  */
 package listaairport_201602909;
 
+import static listaairport_201602909.DatosSim_201602909.NoAviones;
+import listaairport_201602909.listas.Avion_201602909;
+import listaairport_201602909.listas.ListaDobleEnlazada_201602909;
+
 /**
  *
  * @author edgom
  */
 public class Simulacion_201602909 extends javax.swing.JFrame {
+  
+    public static int T1;
 
-    /**
-     * Creates new form Simulacion
-     */
     public Simulacion_201602909() {
         initComponents();
         this.setLocationRelativeTo(null);
+        Aviones();
     }
 
+    public void Aviones() {
+
+        ListaDobleEnlazada_201602909 la = new ListaDobleEnlazada_201602909("ListaAviones");
+
+        while (T1 < NoAviones) {
+            int nomantenimiento = 0;
+            int desabordaje =0;
+            int nopasajeros = (int) ((Math.random() * 35) + 5);
+            if ((nopasajeros >= 5) && (nopasajeros <= 10)) {
+                desabordaje=1;
+                nomantenimiento = (int) ((Math.random() * 2) + 1);
+            } else if ((nopasajeros >= 10) && (nopasajeros <= 25)) {
+                desabordaje=2;
+                nomantenimiento = (int) ((Math.random() * 2) + 2);
+            } else if ((nopasajeros >= 25) && (nopasajeros <= 40)) {
+                desabordaje=3;
+                nomantenimiento = (int) ((Math.random() * 3) + 3);
+
+            }
+            Avion_201602909 avion = new Avion_201602909(T1 + 1, nopasajeros, desabordaje, nomantenimiento);  // (nombre,no_pasajeros,no_turnos,no_turnos_mantenimiento)
+            la.insertarAlFin(avion);
+            la.crearDot();
+            T1++;
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -28,21 +57,37 @@ public class Simulacion_201602909 extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        laviones = new javax.swing.JLabel();
+
         setTitle("ListaAIRPORT");
         setMaximumSize(new java.awt.Dimension(800, 600));
         setMinimumSize(new java.awt.Dimension(800, 600));
-        setPreferredSize(new java.awt.Dimension(800, 600));
         setResizable(false);
+
+        jLabel1.setFont(new java.awt.Font("Colonna MT", 0, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel1.setText("Aviones");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 800, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(48, 48, 48)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(laviones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE))
+                .addContainerGap(612, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 600, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addComponent(laviones, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(288, Short.MAX_VALUE))
         );
 
         pack();
@@ -77,13 +122,13 @@ public class Simulacion_201602909 extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Simulacion_201602909().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new Simulacion_201602909().setVisible(true);
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel laviones;
     // End of variables declaration//GEN-END:variables
 }

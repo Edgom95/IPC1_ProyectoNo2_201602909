@@ -11,23 +11,23 @@ package listaairport_201602909.listas;
  */
 public class Avion_201602909 {
 
-    public String Nombre;
+    public int Nombre;
     public int NoPasajeros;
     public int NoTurnos;
     public int NoTurnosMantenimiento;
 
-    public Avion_201602909(String nombre, int np, int nt, int ntm) {
+    public Avion_201602909(int nombre, int np, int nt, int ntm) {
         setNombre(nombre);
         setNoPasajeros(np);
         setNoTurnos(nt);
         setNoTurnosMantenimiento(ntm);
     }
 
-    public String getNombre() {
+    public int getNombre() {
         return Nombre;
     }
 
-    public void setNombre(String Nombre) {
+    public void setNombre(int Nombre) {
         this.Nombre = Nombre;
     }
 
