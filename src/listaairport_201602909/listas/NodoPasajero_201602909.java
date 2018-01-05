@@ -12,15 +12,16 @@ package listaairport_201602909.listas;
 public class NodoPasajero_201602909 {
 
     public Pasajero_201602909 Pasajero;
-    public NodoPasajero_201602909 Siguiente;
+    public NodoPasajero_201602909 Siguiente,Anterior;
 
-    public NodoPasajero_201602909(Pasajero_201602909 pasajero, NodoPasajero_201602909 siguiente) {
+    public NodoPasajero_201602909(Pasajero_201602909 pasajero, NodoPasajero_201602909 siguiente,NodoPasajero_201602909 anterior) {
         setPasajero(pasajero);
         setSiguiente(siguiente);
+        setAnterior(anterior);
     }
 
     public NodoPasajero_201602909(Pasajero_201602909 pasajero) {
-        this(pasajero, null);
+        this(pasajero, null,null);
     }
 
     public Pasajero_201602909 getPasajero() {
@@ -38,4 +39,13 @@ public class NodoPasajero_201602909 {
     public void setSiguiente(NodoPasajero_201602909 Siguiente) {
         this.Siguiente = Siguiente;
     }
+
+    public NodoPasajero_201602909 getAnterior() {
+        return Anterior;
+    }
+
+    public void setAnterior(NodoPasajero_201602909 Anterior) {
+        this.Anterior = Anterior;
+    }
+    
 }

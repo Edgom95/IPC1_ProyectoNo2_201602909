@@ -15,16 +15,16 @@ import java.io.PrintWriter;
  *
  * @author edgom
  */
-public class ListaDobleEnlazada_201602909 
-{
-public Avion_201602909 Avion;
-public String Nombre;
-public NodoAvion_201602909 inicio;
-public NodoAvion_201602909 fin;
-public int tamaño=0;
+public class ListaEnlazadaCola_201602909 {
 
-    public ListaDobleEnlazada_201602909(String nombre) {
-        this.Nombre=nombre;
+    public Cola_201602909 Cola;
+    public String Nombre;
+    public NodoCola_201602909 inicio;
+    public NodoCola_201602909 fin;
+    public int tamaño = 0;
+
+    public ListaEnlazadaCola_201602909(String nombre) {
+        this.Nombre = nombre;
         inicio = null;
         fin = inicio;
     }
@@ -36,19 +36,19 @@ public int tamaño=0;
             return false;
         }
     }
-    
-    public int tamañoLista(){
-    return tamaño;
+
+    public int tamañoLista() {
+        return tamaño;
     }
 
-    public void insertarAlFin(Avion_201602909 avion) {
-        NodoAvion_201602909 nuevo = new NodoAvion_201602909(avion);
+    public void insertarALFin(Cola_201602909 cola) {
+        NodoCola_201602909 nuevo = new NodoCola_201602909(cola);
         if (estaVacia()) {
             inicio = nuevo;
             tamaño++;
         } else {
-            NodoAvion_201602909 aux = inicio;
-            
+            NodoCola_201602909 aux = inicio;
+
             while (aux.getSiguiente() != null) {
                 aux = aux.getSiguiente();
             }
@@ -58,23 +58,15 @@ public int tamaño=0;
         }
     }
     
-    public void ImprimirLista(){
-     NodoAvion_201602909 aux= inicio;
-      while(aux != null){
-       System.out.println(aux.getAvion());
-       aux=aux.getSiguiente();
-      }
-    }
-    
-    public void eliminarAvion(Avion_201602909 avion) {
+    public void eliminarCola(Cola_201602909 cola) {
 
         if (!estaVacia()) {
-            NodoAvion_201602909 aux = inicio;
-            NodoAvion_201602909 ant = null;
+            NodoCola_201602909 aux = inicio;
+            NodoCola_201602909 ant = null;
 
             while (aux != null) {
 
-                if (aux.getAvion().equals(avion)) {
+                if (aux.getCola().equals(cola)) {
                     if (ant == null) {
                         inicio = inicio.getSiguiente();
                         aux.setSiguiente(null);
@@ -94,25 +86,17 @@ public int tamaño=0;
         }
     }
     
-    public void descontarTurnoAvion() {
-        NodoAvion_201602909 aux = inicio;
-        while (aux != null) {
-            aux.getAvion().setNoTurnos(aux.getAvion().getNoTurnos() - 1);
-            aux = aux.getSiguiente();
-        }
-    }
-    
     public void infoDot() {
         String cadena = "";
 
-        File archivo = new File("ListaAviones.dot");
+        File archivo = new File("ListaEstacionesRegistro.dot");
 
         if (!estaVacia()) {
-            cadena += "nodo" + inicio.hashCode() + "[label=\"" + "Avion " + inicio.getAvion().getNombre()+ "\n" + " NoPasajeros: " + inicio.getAvion().getNoPasajeros()+ "\n" + " NoTurnos: " + inicio.getAvion().getNoTurnos()+ "\n" + " TurnosMantenimiento: " + inicio.getAvion().getNoTurnosMantenimiento() + "\"];\n";
+            cadena += "nodo" + inicio.hashCode() + "[label=\"" + "Estacion " + "\"];\n";
             String anterior = "nodo" + inicio.hashCode();
-            NodoAvion_201602909 aux = inicio;
+            NodoCola_201602909 aux = inicio;
             while (aux != null) {
-                cadena += "nodo" + aux.hashCode() + "[label=\"" + "Avion " + aux.getAvion().getNombre()+ "\n" + " NoPasajeros: " + aux.getAvion().getNoPasajeros()+ "\n" + " NoTurnos: " + aux.getAvion().getNoTurnos()+ "\n" + " TurnosMantenimiento: " + aux.getAvion().getNoTurnosMantenimiento() + "\"];\n";
+                cadena += "nodo" + aux.hashCode() + "[label=\"" + "Estacion " + "\"];\n";
                 cadena += anterior + "->"+ "nodo" + aux.hashCode()+ "[dir=both]" + ";\n";
                 anterior = "nodo" + aux.hashCode();
                 aux = aux.getSiguiente();
@@ -123,8 +107,8 @@ public int tamaño=0;
                 PrintWriter pw = new PrintWriter(bw);
 
                 pw.println("digraph ListaDobleEnlazada {");
-                pw.println("rankdir=UD");
-                pw.println("node [margin=0 fontcolor=black fontsize=48 width=0.8 shape=invhouse style=filled]");
+                pw.println("rankdir=RL");
+                pw.println("node [margin=0 fontcolor=black fontsize=48 width=0.8 shape=note style=filled]");
                 pw.println(cadena);
                 pw.println("} \n");
                 pw.close();

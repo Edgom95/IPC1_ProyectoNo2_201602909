@@ -1,7 +1,0 @@
-digraph G {
-Avion: 1 No Pasajeros: 27 No Turnos: 3 No Turnos Mantenimiento: 4 -> 
-Avion: 2 No Pasajeros: 29 No Turnos: 3 No Turnos Mantenimiento: 3 -> 
-Avion: 3 No Pasajeros: 15 No Turnos: 2 No Turnos Mantenimiento: 2 -> 
-Avion: 4 No Pasajeros: 19 No Turnos: 2 No Turnos Mantenimiento: 2 -> 
-Avion: 5 No Pasajeros: 8 No Turnos: 1 No Turnos Mantenimiento: 2 -> 
-}

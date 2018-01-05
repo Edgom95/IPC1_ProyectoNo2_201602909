@@ -78,24 +78,53 @@ public class ListaEnlazadaSimple_201602909 {
         }
     }
     
-    public void crearDot(){
-    File archivo = new File("ListaAviones.dot");
-        try {
-            FileWriter fw = new FileWriter(archivo);
-            BufferedWriter bw = new BufferedWriter(fw);
-            PrintWriter pw = new PrintWriter(bw);
+    public void descontarTurnoPasajero() {
+        NodoPasajero_201602909 aux = inicio;
+        while (aux != null) {
+            aux.getPasajero().setNoTurnos(aux.getPasajero().getNoTurnos() - 1);
+            aux = aux.getSiguiente();
+        }
+    }
+    
+    public void infoDot() {
+        String cadena = "";
 
-            pw.write("digraph G {"+"\n");
+        File archivo = new File("ListaPasajeros.dot");
+
+        if (!estaVacio()) {
+            cadena += "nodo" + inicio.hashCode() + "[label=\"" + "Pasajero " + inicio.getPasajero().getNombre() + "\n" + " NoMaletas: " + inicio.getPasajero().NoMaletas + "\n" + " NoDocumentos: " + inicio.getPasajero().getNoDocumentos() + "\n" + " Turnos: " + inicio.getPasajero().NoTurnos + "\"];\n";
+            String anterior = "nodo" + inicio.hashCode();
             NodoPasajero_201602909 aux = inicio;
             while (aux != null) {
-            pw.write("Pasajero: "+aux.getPasajero().getNombre()+" No Maletas: "+aux.getPasajero().getNoMaletas()+" No Documentos: "+aux.getPasajero().getNoDocumentos()+" No Turnos: "+aux.getPasajero().getNoTurnos());
-            aux = aux.getSiguiente();
+                cadena += "nodo" + aux.hashCode() + "[label=\"" + "Pasajero " + aux.getPasajero().Nombre + "\n" + " NoMaletas: " + aux.getPasajero().getNoMaletas() + "\n" + " NoDocumentos: " + aux.getPasajero().getNoDocumentos() + "\n" + " Turnos: " + aux.getPasajero().getNoTurnos() + "\"];\n";
+                cadena += anterior + "->" + "nodo" + aux.hashCode() + ";\n";
+                anterior = "nodo" + aux.hashCode();
+                aux = aux.getSiguiente();
             }
-            pw.write("}"+"\n");
-            pw.close();
-            bw.close();
+            try {
+                FileWriter fw = new FileWriter(archivo);
+                BufferedWriter bw = new BufferedWriter(fw);
+                PrintWriter pw = new PrintWriter(bw);
 
-        } catch (IOException e) {
+                pw.println("digraph ListaEnlazadaSimple {");
+                pw.println("rankdir=UD");
+                pw.println("node [margin=0 fontcolor=blue fontsize=48 width=0.3 shape=parallelogram style=filled]");
+                pw.println(cadena);
+                pw.println("} \n");
+                pw.close();
+                bw.close();
+            } catch (IOException e) {
+            }
+        }
+    }
+
+    public void GenImagen(String Dot, String Png) {
+        try {
+            String dotPath = "C:\\Program Files (x86)\\Graphviz2.38\\bin\\dot.exe";
+            String cmd = dotPath + " -Tjpg " + Dot + " -o " + Png;
+            Runtime.getRuntime().exec(cmd);
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
         }
     }
 }
