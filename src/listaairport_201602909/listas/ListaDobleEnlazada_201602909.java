@@ -110,7 +110,7 @@ public int tamaño=0;
         if (!estaVacia()) {
             cadena += "nodo" + inicio.hashCode() + "[label=\"" + "Avion " + inicio.getAvion().getNombre()+ "\n" + " NoPasajeros: " + inicio.getAvion().getNoPasajeros()+ "\n" + " NoTurnos: " + inicio.getAvion().getNoTurnos()+ "\n" + " TurnosMantenimiento: " + inicio.getAvion().getNoTurnosMantenimiento() + "\"];\n";
             String anterior = "nodo" + inicio.hashCode();
-            NodoAvion_201602909 aux = inicio;
+            NodoAvion_201602909 aux = inicio.getSiguiente();
             while (aux != null) {
                 cadena += "nodo" + aux.hashCode() + "[label=\"" + "Avion " + aux.getAvion().getNombre()+ "\n" + " NoPasajeros: " + aux.getAvion().getNoPasajeros()+ "\n" + " NoTurnos: " + aux.getAvion().getNoTurnos()+ "\n" + " TurnosMantenimiento: " + aux.getAvion().getNoTurnosMantenimiento() + "\"];\n";
                 cadena += anterior + "->"+ "nodo" + aux.hashCode()+ "[dir=both]" + ";\n";

@@ -1,0 +1,85 @@
+digraph ListaEnlazadaSimple {
+rankdir=UD
+node [margin=0 fontcolor=blue fontsize=48 width=0.3 shape=parallelogram style=filled]
+nodo1524929006[label="Pasajero 1
+ NoMaletas: 2
+ NoDocumentos: 7
+ Turnos: 1"];
+nodo2100231258[label="Pasajero 1
+ NoMaletas: 1
+ NoDocumentos: 2
+ Turnos: 2"];
+nodo1524929006->nodo2100231258;
+nodo1788797425[label="Pasajero 1
+ NoMaletas: 1
+ NoDocumentos: 9
+ Turnos: 2"];
+nodo2100231258->nodo1788797425;
+nodo948631113[label="Pasajero 1
+ NoMaletas: 3
+ NoDocumentos: 3
+ Turnos: 2"];
+nodo1788797425->nodo948631113;
+nodo1950552391[label="Pasajero 1
+ NoMaletas: 3
+ NoDocumentos: 8
+ Turnos: 1"];
+nodo948631113->nodo1950552391;
+nodo1561162155[label="Pasajero 1
+ NoMaletas: 1
+ NoDocumentos: 3
+ Turnos: 1"];
+nodo1950552391->nodo1561162155;
+nodo702302510[label="Pasajero 1
+ NoMaletas: 3
+ NoDocumentos: 3
+ Turnos: 1"];
+nodo1561162155->nodo702302510;
+nodo1629103276[label="Pasajero 1
+ NoMaletas: 2
+ NoDocumentos: 6
+ Turnos: 2"];
+nodo702302510->nodo1629103276;
+nodo1822076892[label="Pasajero 1
+ NoMaletas: 3
+ NoDocumentos: 6
+ Turnos: 2"];
+nodo1629103276->nodo1822076892;
+nodo2105831155[label="Pasajero 1
+ NoMaletas: 3
+ NoDocumentos: 7
+ Turnos: 2"];
+nodo1822076892->nodo2105831155;
+nodo452206358[label="Pasajero 1
+ NoMaletas: 3
+ NoDocumentos: 3
+ Turnos: 1"];
+nodo2105831155->nodo452206358;
+nodo911731688[label="Pasajero 1
+ NoMaletas: 2
+ NoDocumentos: 2
+ Turnos: 1"];
+nodo452206358->nodo911731688;
+nodo1306898838[label="Pasajero 1
+ NoMaletas: 3
+ NoDocumentos: 7
+ Turnos: 2"];
+nodo911731688->nodo1306898838;
+nodo877700137[label="Pasajero 1
+ NoMaletas: 1
+ NoDocumentos: 2
+ Turnos: 2"];
+nodo1306898838->nodo877700137;
+nodo1450735254[label="Pasajero 1
+ NoMaletas: 3
+ NoDocumentos: 7
+ Turnos: 1"];
+nodo877700137->nodo1450735254;
+nodo1650887751[label="Pasajero 1
+ NoMaletas: 1
+ NoDocumentos: 8
+ Turnos: 2"];
+nodo1450735254->nodo1650887751;
+
+} 
+

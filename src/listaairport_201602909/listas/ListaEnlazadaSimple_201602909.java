@@ -21,6 +21,7 @@ public class ListaEnlazadaSimple_201602909 {
     public String Nombre;
     public NodoPasajero_201602909 inicio;
     public int tamaño;
+    public int documento;
     public NodoPasajero_201602909 fin;
 
     public ListaEnlazadaSimple_201602909(String nombre) {
@@ -55,6 +56,26 @@ public class ListaEnlazadaSimple_201602909 {
     aux.setSiguiente(nuevo);
     }
     tamaño++;
+    }
+    
+    public void insertar(int documento){
+    NodoPasajero_201602909 nuevo = new NodoPasajero_201602909(documento);
+    if(estaVacio()){
+    inicio=nuevo;
+    }else{
+    NodoPasajero_201602909 aux = inicio;
+    while(aux.getSiguiente()!=null){
+    aux=aux.getSiguiente();
+    }
+    aux.setSiguiente(nuevo);
+    }
+    tamaño++;
+    }
+    
+    public int sacar(){
+    int maleta = inicio.getDocumentos();
+    inicio=inicio.getSiguiente();
+    return maleta;
     }
     
     public void ImprimirLista(){
@@ -94,7 +115,7 @@ public class ListaEnlazadaSimple_201602909 {
         if (!estaVacio()) {
             cadena += "nodo" + inicio.hashCode() + "[label=\"" + "Pasajero " + inicio.getPasajero().getNombre() + "\n" + " NoMaletas: " + inicio.getPasajero().NoMaletas + "\n" + " NoDocumentos: " + inicio.getPasajero().getNoDocumentos() + "\n" + " Turnos: " + inicio.getPasajero().NoTurnos + "\"];\n";
             String anterior = "nodo" + inicio.hashCode();
-            NodoPasajero_201602909 aux = inicio;
+            NodoPasajero_201602909 aux = inicio.getSiguiente();
             while (aux != null) {
                 cadena += "nodo" + aux.hashCode() + "[label=\"" + "Pasajero " + aux.getPasajero().Nombre + "\n" + " NoMaletas: " + aux.getPasajero().getNoMaletas() + "\n" + " NoDocumentos: " + aux.getPasajero().getNoDocumentos() + "\n" + " Turnos: " + aux.getPasajero().getNoTurnos() + "\"];\n";
                 cadena += anterior + "->" + "nodo" + aux.hashCode() + ";\n";

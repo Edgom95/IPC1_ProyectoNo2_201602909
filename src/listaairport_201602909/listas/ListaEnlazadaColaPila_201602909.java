@@ -15,15 +15,16 @@ import java.io.PrintWriter;
  *
  * @author edgom
  */
-public class ListaEnlazadaCola_201602909 {
+public class ListaEnlazadaColaPila_201602909 {
 
     public Cola_201602909 Cola;
+    public Pila_201602909 Pila;
     public String Nombre;
-    public NodoCola_201602909 inicio;
-    public NodoCola_201602909 fin;
+    public NodoColaPila_201602909 inicio;
+    public NodoColaPila_201602909 fin;
     public int tamaño = 0;
 
-    public ListaEnlazadaCola_201602909(String nombre) {
+    public ListaEnlazadaColaPila_201602909(String nombre) {
         this.Nombre = nombre;
         inicio = null;
         fin = inicio;
@@ -41,13 +42,13 @@ public class ListaEnlazadaCola_201602909 {
         return tamaño;
     }
 
-    public void insertarALFin(Cola_201602909 cola) {
-        NodoCola_201602909 nuevo = new NodoCola_201602909(cola);
+    public void insertarALFin(Cola_201602909 cola,Pila_201602909 pila) {
+        NodoColaPila_201602909 nuevo = new NodoColaPila_201602909(cola,pila);
         if (estaVacia()) {
             inicio = nuevo;
             tamaño++;
         } else {
-            NodoCola_201602909 aux = inicio;
+            NodoColaPila_201602909 aux = inicio;
 
             while (aux.getSiguiente() != null) {
                 aux = aux.getSiguiente();
@@ -61,8 +62,8 @@ public class ListaEnlazadaCola_201602909 {
     public void eliminarCola(Cola_201602909 cola) {
 
         if (!estaVacia()) {
-            NodoCola_201602909 aux = inicio;
-            NodoCola_201602909 ant = null;
+            NodoColaPila_201602909 aux = inicio;
+            NodoColaPila_201602909 ant = null;
 
             while (aux != null) {
 
@@ -94,7 +95,7 @@ public class ListaEnlazadaCola_201602909 {
         if (!estaVacia()) {
             cadena += "nodo" + inicio.hashCode() + "[label=\"" + "Estacion " + "\"];\n";
             String anterior = "nodo" + inicio.hashCode();
-            NodoCola_201602909 aux = inicio;
+            NodoColaPila_201602909 aux = inicio.getSiguiente();
             while (aux != null) {
                 cadena += "nodo" + aux.hashCode() + "[label=\"" + "Estacion " + "\"];\n";
                 cadena += anterior + "->"+ "nodo" + aux.hashCode()+ "[dir=both]" + ";\n";
@@ -108,7 +109,7 @@ public class ListaEnlazadaCola_201602909 {
 
                 pw.println("digraph ListaDobleEnlazada {");
                 pw.println("rankdir=RL");
-                pw.println("node [margin=0 fontcolor=black fontsize=48 width=0.8 shape=note style=filled]");
+                pw.println("node [margin=0 fontcolor=black fontsize=48 width=0.8 shape=hexagon style=filled]");
                 pw.println(cadena);
                 pw.println("} \n");
                 pw.close();
