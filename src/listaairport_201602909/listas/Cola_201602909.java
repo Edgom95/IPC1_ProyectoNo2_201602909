@@ -12,6 +12,7 @@ package listaairport_201602909.listas;
 public class Cola_201602909 {
 
     public NodoPasajero_201602909 Raiz, Fondo;
+    public NodoAvion_201602909 Inicio, Fin;
     public int longitud;
 
     public Cola_201602909() {
@@ -43,6 +44,22 @@ public class Cola_201602909 {
         }
         longitud++;
     }
+    
+    public void insertar(Avion_201602909 avion){
+        NodoAvion_201602909 nuevo = new NodoAvion_201602909(avion);
+        if (estaVacia()) {
+            Inicio = nuevo;
+        } else {
+           NodoAvion_201602909 aux = Inicio;
+            
+            while (aux.getSiguiente() != null) {
+                aux = aux.getSiguiente();
+            }
+            aux.setSiguiente(nuevo);
+            nuevo.setAnterior(aux);
+        }
+        longitud++;
+    }
 
     public Pasajero_201602909 extraer() {
         Pasajero_201602909 pass;
@@ -56,6 +73,20 @@ public class Cola_201602909 {
             Fondo = null;
         }
         return pass;
+    }
+    
+    public Avion_201602909 extraerA(){
+    Avion_201602909 avion;
+        if (estaVacia()) {
+            return null;
+        }
+        avion = Inicio.getAvion();
+        Inicio = Inicio.getSiguiente();
+        longitud--;
+        if (longitud == 0) {
+            Fin = null;
+        }
+        return avion;
     }
 
 }

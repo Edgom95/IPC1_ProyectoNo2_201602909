@@ -38,7 +38,7 @@ public class ListaEnlazadaColaPila_201602909 {
         }
     }
 
-    public int tamañoLista() {
+    public int tamaño() {
         return tamaño;
     }
 
@@ -86,18 +86,41 @@ public class ListaEnlazadaColaPila_201602909 {
             }
         }
     }
-    
+    public Cola_201602909 buscar(Cola_201602909 col) {
+        NodoColaPila_201602909 aux = inicio;
+        Cola_201602909 cola = null;
+        while (aux != null) {
+            if (aux.getCola().equals(col)) {
+                cola = aux.getCola();
+            }
+            aux = aux.getSiguiente();
+        }
+        return cola;
+    }
+
+    public Pila_201602909 buscar(Pila_201602909 pil) {
+        NodoColaPila_201602909 aux = inicio;
+        Pila_201602909 pila = null;
+        while (aux != null) {
+            if (aux.getPila().equals(pil)) {
+                pila = aux.getPila();
+            }
+            aux = aux.getSiguiente();
+        }
+        return pila;
+    }
+
     public void infoDot() {
         String cadena = "";
 
         File archivo = new File("ListaEstacionesRegistro.dot");
 
         if (!estaVacia()) {
-            cadena += "nodo" + inicio.hashCode() + "[label=\"" + "Estacion " + "\"];\n";
+            cadena += "nodo" + inicio.hashCode() + "[label=\"" + "Estacion Registro " + "\"];\n";
             String anterior = "nodo" + inicio.hashCode();
             NodoColaPila_201602909 aux = inicio.getSiguiente();
             while (aux != null) {
-                cadena += "nodo" + aux.hashCode() + "[label=\"" + "Estacion " + "\"];\n";
+                cadena += "nodo" + aux.hashCode() + "[label=\"" + "Estacion Registro" + "\"];\n";
                 cadena += anterior + "->"+ "nodo" + aux.hashCode()+ "[dir=both]" + ";\n";
                 anterior = "nodo" + aux.hashCode();
                 aux = aux.getSiguiente();
@@ -109,7 +132,7 @@ public class ListaEnlazadaColaPila_201602909 {
 
                 pw.println("digraph ListaDobleEnlazada {");
                 pw.println("rankdir=RL");
-                pw.println("node [margin=0 fontcolor=black fontsize=48 width=0.8 shape=hexagon style=filled]");
+                pw.println("node [margin=0 fontcolor=purple fontsize=32 width=0.8 shape=hexagon style=filled]");
                 pw.println(cadena);
                 pw.println("} \n");
                 pw.close();

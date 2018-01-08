@@ -98,15 +98,19 @@ public class ListaEnlazadaSimple_201602909 {
         aux.setSiguiente(siguiente);
         }
     }
-    
-    public void descontarTurnoPasajero() {
+
+    public Pasajero_201602909 buscar(int turno) {
         NodoPasajero_201602909 aux = inicio;
+        Pasajero_201602909 pass = null;
         while (aux != null) {
-            aux.getPasajero().setNoTurnos(aux.getPasajero().getNoTurnos() - 1);
+            if (aux.getPasajero().getNoTurnos() == turno) {
+                pass = aux.getPasajero();
+            }
             aux = aux.getSiguiente();
         }
+        return pass;
     }
-    
+
     public void infoDot() {
         String cadena = "";
 

@@ -27,6 +27,10 @@ public class NodoColaPila_201602909 {
         setAnterior(Anterior);
     }
 
+    public NodoColaPila_201602909(Cola_201602909 Cola) {
+        this.Cola = Cola;
+    }
+    
     public Cola_201602909 getCola() {
         return Cola;
     }

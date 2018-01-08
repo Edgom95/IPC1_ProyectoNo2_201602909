@@ -40,7 +40,7 @@ public class DatosSim_201602909 extends javax.swing.JFrame {
         btmsim = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
 
-        setTitle("ListaAIRPORT");
+        setTitle("ListaAIRPORT-Datos_Simulacion");
         setMaximumSize(new java.awt.Dimension(800, 600));
         setMinimumSize(new java.awt.Dimension(800, 600));
         setPreferredSize(new java.awt.Dimension(800, 600));
@@ -101,6 +101,7 @@ public class DatosSim_201602909 extends javax.swing.JFrame {
     NoEM = Integer.parseInt(noestacioesmantenimiento.getText());
     Simulacion_201602909 sim = new Simulacion_201602909();
     sim.setVisible(true);
+    this.setVisible(false);
     }//GEN-LAST:event_btmsimActionPerformed
 
     /**

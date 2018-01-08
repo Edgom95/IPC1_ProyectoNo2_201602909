@@ -89,6 +89,19 @@ public class ListaEnlazadaCircular_201602909 {
     actual=actual.getSiguiente();
     }while(actual!=Inicio);
     }
+
+    public int buscar(int maleta) {
+        NodoPasajero_201602909 aux = Inicio;
+        int mal = 0;
+        do {
+            if (aux.getDocumentos() == maleta) {
+                mal = aux.getDocumentos();
+            }
+            aux = aux.getSiguiente();
+        } while (aux != Inicio);
+        return mal;
+    }
+    
     
      public void infoDot() {
         String cadena = "";

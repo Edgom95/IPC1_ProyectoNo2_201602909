@@ -79,6 +79,7 @@ public class Inicio_201602909 extends javax.swing.JFrame {
     private void btnbgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbgActionPerformed
        DatosSim_201602909 dm = new DatosSim_201602909();
        dm.setVisible(true);
+       this.setVisible(false);
     }//GEN-LAST:event_btnbgActionPerformed
 
     private void btnoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnoutActionPerformed

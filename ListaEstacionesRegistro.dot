@@ -1,7 +1,0 @@
-digraph ListaDobleEnlazada {
-rankdir=RL
-node [margin=0 fontcolor=black fontsize=48 width=0.8 shape=hexagon style=filled]
-nodo54224434[label="Estacion "];
-
-} 
-

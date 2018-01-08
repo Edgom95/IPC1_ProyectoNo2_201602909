@@ -58,6 +58,18 @@ public int tamaño=0;
         }
     }
     
+    public Avion_201602909 buscar(int turno){
+        NodoAvion_201602909 aux=inicio;
+        Avion_201602909 avion = null;
+        while(aux!=null){
+           if(aux.getAvion().NoTurnos==turno){
+           avion=aux.getAvion();
+           }
+           aux=aux.getSiguiente();
+        }
+        return avion;
+    } 
+    
     public void ImprimirLista(){
      NodoAvion_201602909 aux= inicio;
       while(aux != null){
@@ -97,7 +109,11 @@ public int tamaño=0;
     public void descontarTurnoAvion() {
         NodoAvion_201602909 aux = inicio;
         while (aux != null) {
-            aux.getAvion().setNoTurnos(aux.getAvion().getNoTurnos() - 1);
+            if (aux.getAvion().getNoTurnos() > 0) {
+                aux.getAvion().setNoTurnos(aux.getAvion().getNoTurnos() - 1);
+            } else {
+                aux.getAvion().setNoTurnos(0);
+            }
             aux = aux.getSiguiente();
         }
     }
