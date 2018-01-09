@@ -20,7 +20,6 @@ public class ListaEnlazadaCircular_201602909 {
     public NodoPasajero_201602909 Inicio;
     public NodoPasajero_201602909 Fin;
     public String Nombre;
-    public int Maletas;
     public int tamaño=0;
 
     public ListaEnlazadaCircular_201602909(String Nombre) {

@@ -27,9 +27,9 @@ import listaairport_201602909.listas.Pila_201602909;
  */
 public class Simulacion_201602909 extends javax.swing.JFrame {
 
-    public static int T1;
-    public static int T2;
-    public static int T3;
+    public static int TurnoAvion;
+    public static int TurnoER;
+    public static int TurnoMant;
     public ListaDobleEnlazada_201602909 la = new ListaDobleEnlazada_201602909("ListaAviones");
     public ListaEnlazadaSimple_201602909 les = new ListaEnlazadaSimple_201602909("ListaPasajeros");
     public ListaEnlazadaColaPila_201602909 lec = new ListaEnlazadaColaPila_201602909("ListaEstacionesRegistro");
@@ -42,8 +42,8 @@ public class Simulacion_201602909 extends javax.swing.JFrame {
     public String aviones = "";
     public String pespera = "";
     public String nmaletas = "";
-    public String eregistro = "";
-    public String emant = "";
+//    public String eregistro = "";
+//    public String emant = "";
 
     public Simulacion_201602909() {
         initComponents();
@@ -58,7 +58,7 @@ public class Simulacion_201602909 extends javax.swing.JFrame {
 
     public void Simulacion() {
         if (cont > 0) {
-            if (T1 < NoAviones) {
+            if (TurnoAvion < NoAviones) {
                 int nomantenimiento = 0;
                 int desabordaje = 0;
                 int nopasajeros = (int) ((Math.random() * 35) + 5);
@@ -72,7 +72,7 @@ public class Simulacion_201602909 extends javax.swing.JFrame {
                     desabordaje = 3;
                     nomantenimiento = (int) ((Math.random() * 3) + 3);
                 }
-                Avion_201602909 avion = new Avion_201602909(T1 + 1, nopasajeros, desabordaje, nomantenimiento);
+                Avion_201602909 avion = new Avion_201602909(TurnoAvion+ 1, nopasajeros, desabordaje, nomantenimiento);
                 aviones += "Avion: " + avion.getNombre() + "\n";
                 aviones += "No Pasajeros: " + avion.getNoPasajeros() + "\n";
                 aviones += "Turnos: " + avion.NoTurnos + "\n";
@@ -90,7 +90,7 @@ public class Simulacion_201602909 extends javax.swing.JFrame {
                     int nomaletas = (int) ((Math.random() * 3) + 1);
                     int nodocumentos = (int) ((Math.random() * 9) + 1);
                     int noturnos = (int) ((Math.random() * 2) + 1);
-                    Pasajero_201602909 pasajero = new Pasajero_201602909(T1 + 1, nomaletas, nodocumentos, noturnos);
+                    Pasajero_201602909 pasajero = new Pasajero_201602909(TurnoAvion + 1, nomaletas, nodocumentos, noturnos);
                     les.insertarAlFin(pasajero);
 
                     les.infoDot();
@@ -119,7 +119,7 @@ public class Simulacion_201602909 extends javax.swing.JFrame {
                     lecir.infoDot();
                     lecir.GenImagen("ListaMaletas.dot", "Maletas.png");
 
-                    if (T2 < NoER) {
+                    if (TurnoER < NoER) {
                         for (int i = 0; i <= 10; i++) {
                             cola1.insertar(pasajero);
                             pila.push(pasajero.getNoDocumentos());
@@ -129,16 +129,16 @@ public class Simulacion_201602909 extends javax.swing.JFrame {
                         lec.GenImagen("ListaEstacionesRegistro.dot", "EstacionesRegistro.png");
                     }
                     pass--;
-                    T2++;
-                    if (T3 < NoEM) {
-                        for (int k = 0; k <= T3; k++) {
+                    TurnoER++;
+                    if (TurnoMant < NoEM) {
+                        for (int k = 0; k <= TurnoMant; k++) {
                             cola2.insertar(avion);
                         }
                         lsc.insertarAlFin(cola2);
                         lsc.infoDot();
                         lsc.GenImagen("ListaMantenimiento.dot", "Mantenimiento.png");
                     }
-                    T3++;
+                    TurnoMant++;
 
                 }
                 pespera += "Pasajeros Desabordaje\n";
@@ -153,9 +153,9 @@ public class Simulacion_201602909 extends javax.swing.JFrame {
 //                emant += "E. Mantenimiento";
 //                emant += "No. " + lsc.tamaño() + "\n";
 //                emant += "********************************\n";
-                T1++;
+                TurnoAvion++;
                 ColocarImagenes();
-                consola();
+                Consola();
             }
         }
     }
@@ -185,7 +185,7 @@ public class Simulacion_201602909 extends javax.swing.JFrame {
         lmantenimiento.repaint();
     }
 
-    public void consola() {
+    public void Consola() {
         String cadena = "";
         cadena += "*********************************\n";
         cadena += "      ListaAIRPORT-Consola       \n";
@@ -460,7 +460,7 @@ public class Simulacion_201602909 extends javax.swing.JFrame {
         if (cont > 0) {
             Simulacion();
             ColocarImagenes();
-            consola();
+            Consola();
         }
         cont++;
     }//GEN-LAST:event_btnpasarturnoActionPerformed
@@ -498,7 +498,7 @@ public class Simulacion_201602909 extends javax.swing.JFrame {
         while (cont != NoAviones + 3) {
             Simulacion();
             ColocarImagenes();
-            consola();
+            Consola();
             cont++;
         }
     }//GEN-LAST:event_btnautoActionPerformed

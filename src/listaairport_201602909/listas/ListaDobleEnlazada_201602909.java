@@ -37,7 +37,7 @@ public int tamaño=0;
         }
     }
     
-    public int tamañoLista(){
+    public int tamaño(){
     return tamaño;
     }
 
